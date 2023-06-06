@@ -10,32 +10,32 @@ var _console
 func _init(console):
 	self._console = console
 
-	self._console.add_command('history', self._console.History, 'print_all')\
+	self._console.add_command('@history', self._console.History, 'print_all')\
 		.set_description('Print all previous commands used during the session.')\
 		.register()
 
-	self._console.add_command('commands', self, '_list_commands')\
+	self._console.add_command('@commands', self, '_list_commands')\
 		.set_description('Lists all available commands.')\
 		.register()
 
-	self._console.add_command('help', self, '_help')\
+	self._console.add_command('@help', self, '_help')\
 		.set_description('Outputs usage instructions.')\
 		.add_argument('command', TYPE_STRING)\
 		.register()
 
-	self._console.add_command('quit', self, '_quit')\
+	self._console.add_command('@quit', self, '_quit')\
 		.set_description('Exit application.')\
 		.register()
 
-	self._console.add_command('clear', self._console)\
+	self._console.add_command('@clear', self._console, 'clear')\
 		.set_description('Clear the terminal.')\
 		.register()
 
-	self._console.add_command('version', self, '_version')\
+	self._console.add_command('@version', self, '_version')\
 		.set_description('Shows engine version.')\
 		.register()
 
-	self._console.add_command('fps_max', Engine, 'set_target_fps')\
+	self._console.add_command('@fps_max', Engine, 'set_target_fps')\
 		.set_description('The maximal framerate at which the application can run.')\
 		.add_argument('fps', self._console.IntRangeType.new(10, 1000))\
 		.register()
@@ -55,9 +55,9 @@ func _help(command_name = null):
 
 	else:
 		self._console.write_line(\
-			"Type [color=#ffff66][url=help]help[/url] <command-name>[/color] show information about command.\n" + \
-			"Type [color=#ffff66][url=commands]commands[/url][/color] to get a list of all commands.\n" + \
-			"Type [color=#ffff66][url=quit]quit[/url][/color] to exit the application.")
+			"Type [color=#ffff66][url=help]@help[/url] <command-name>[/color] show information about command.\n" + \
+			"Type [color=#ffff66][url=commands]@commands[/url][/color] to get a list of all commands.\n" + \
+			"Type [color=#ffff66][url=quit]@quit[/url][/color] to exit the application.")
 
 
 # Prints out engine version.
