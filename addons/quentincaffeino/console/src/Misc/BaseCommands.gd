@@ -10,11 +10,6 @@ var _console
 func _init(console):
 	self._console = console
 
-	self._console.add_command('echo', self._console, 'write')\
-		.set_description('Prints a string.')\
-		.add_argument('text', TYPE_STRING)\
-		.register()
-
 	self._console.add_command('history', self._console.History, 'print_all')\
 		.set_description('Print all previous commands used during the session.')\
 		.register()
